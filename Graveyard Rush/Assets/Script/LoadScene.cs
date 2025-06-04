@@ -9,4 +9,14 @@ public class LoadScene : MonoBehaviour
     {
         SceneManager.LoadScene(name);
     }
+
+    public void paused()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void resume()
+    {
+        Time.timeScale = 1;
+    }
 }
