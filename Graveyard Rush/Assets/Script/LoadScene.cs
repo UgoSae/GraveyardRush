@@ -19,4 +19,9 @@ public class LoadScene : MonoBehaviour
     {
         Time.timeScale = 1;
     }
+    public void quit()
+    {
+        Time.timeScale = 1;
+SceneManager.LoadScene("MainMenu");
+    }
 }
