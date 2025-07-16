@@ -1,19 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelChanger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    private void
-OnTriggerEnter2D(Collider2D other)
+    [SerializeField] private string menuSceneName = "MainMenu";
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (!other.CompareTag("Player")) return;
+
+        int current = SceneManager.GetActiveScene().buildIndex;
+        int next   = current + 1;
+
+        // Masih ada level berikutnya? → muat level berikutnya
+        if (next < SceneManager.sceneCountInBuildSettings)
         {
-SceneManager.LoadScene("Level 2");
-SceneManager.LoadScene("Level 3");
-SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene(next);
+        }
+        // Kalau tidak (berarti di Level3) → balik ke Main Menu
+        else
+        {
+            SceneManager.LoadScene(menuSceneName);
         }
     }
 }
